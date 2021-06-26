@@ -40,3 +40,50 @@ char *word_start(char *s){
 }
 
 
+// uses the pointer from word_start to start at the first letter of the string and interates until
+// a space character is found (non_space_char returns true)
+// returns the address of the first space character in the string (the end of the word)
+char *word_terminator(char *word){
+  start_of_word = word_start(word);
+  int i = 0;
+  while(non_space_char(start_of_word[i])){
+    i++;
+  }
+  return &start_of_word[i];
+}
+
+
+
+
+// returns int value for number of words in a string
+int count_words(char *c){
+  int count = 0;
+
+  while( c != word_terminator(c)){ // c cannot initially be == to word_term(c) because never called
+    c = word_terminator(c); // c is given the value of word_term(c) for 1st word (if > 1 in str)
+    count++;
+  }
+  return count;
+}
+
+
+// returns the first address of output string which now has memory allocated for it 
+char *copy_str(char *inStr, short len){
+  char *outputStr = malloc( (len + 1) * sizeof(char)); // + 1 for '/0' char at end
+  int i = 0;
+  while ( i <= len){
+    outputStr[i] = inStr[i];
+    i++;
+  }
+  outputStr[len + 1] = '\0'; // sets last byte to null terminator
+  return outputStr;
+}
+
+
+
+
+
+
+      
+  
+  
