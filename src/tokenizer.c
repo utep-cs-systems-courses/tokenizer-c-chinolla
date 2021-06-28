@@ -79,6 +79,22 @@ char *copy_str(char *inStr, short len){
   return outputStr;
 }
 
+char **tokenizer(char *str){
+  int numWords = count_words(str);// the number of words going to be tokenized from string
+  char **tokens == malloc( (numWords + 1) * sizeof(char *)); // allocates memory to tokens
+  char *wordstart = word_start(str);
+  char *wordend = word_terminator(str);
+
+  int i;
+  for(i = 0; i < numWords; i++){
+    tokens[i] = copy_str(wordstart, wordend - wordstart);
+    wordstart = word_start(wordend);
+    wordend = word_terminator(wordstart);
+  }
+  tokens[i] = NULL;
+  return tokens;
+}
+
 
 
 
