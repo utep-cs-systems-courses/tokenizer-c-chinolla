@@ -96,6 +96,28 @@ char **tokenizer(char *str){
 }
 
 
+// function that prints elements in tokens array (words)
+void print_tokens(char **tokens){
+  int i = 0;
+  while(tokens[i] != NULL){
+    printf("%s\n", tokens[i]);
+    i++;
+  }
+}
+
+// free each word from tokens then frees the tokens array
+void free_tokens(char **tokens){
+  int i = 0;
+  while(tokens[i] != NULL){
+    free(tokens[i]);
+    i++;
+  }
+  free(tokens);
+}
+
+
+
+
 
 
 
