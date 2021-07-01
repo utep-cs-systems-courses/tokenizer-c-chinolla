@@ -6,6 +6,7 @@
 
 // Function Declarations
 int strcmp(char *str1, char *str2);
+int str_to_num(char *str);
 
 int main(){
   List *history = init_history(); // initializes history list
@@ -22,7 +23,7 @@ int main(){
   printf("\t \"!\" TO PRINT INDIVIDUAL HISTORY\n");
   printf("ENTER A STRING TO BE TOKENIZED");
   while(strcmp(str,"q") != 0){
-    printf("$\n");
+    printf("\n$ ");
     i = 0;
     while((c = getchar()) != '\n'){
 	str[i] = c;
@@ -34,12 +35,11 @@ int main(){
     if(strcmp(str, "q") == 0){ // if user uses 'q' to exit
       goto done;
     }
-    else if(strcmp(str, "history") == 0){
+    else if(strcmp("history", str) == 0){
       print_history(history);
     }
     else if(str[0] == '!'){
-      printf("ENTER ID NUMBER: ");
-      scanf("%d\n", &IDNum);
+      IDNum = str_to_num(str + 1);
       printf("%s", get_history(history, IDNum));
     }
     else{
@@ -66,3 +66,13 @@ int strcmp(char *str1, char *str2){
 }
 
      
+int str_to_num(char *str){
+  int number = 0;
+  int i = 0;
+  while(str[i] != '\0'){
+    number = number * 10;
+    number = number + (str[i] - '0');
+    i++;
+  }
+  return number;
+}
