@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "history.c"
-#include "tokenizer.c"
+#include "history.h"
+#include "tokenizer.h"
 #define MAX_LENGTH 32
 
 // Function Declarations
@@ -42,7 +42,7 @@ int main(){
       printf("%s", get_history(history, index));
     }
     else{
-      tokens = tokenizer(str);
+      tokens = tokenize(str);
       print_tokens(tokens);
       free_tokens(tokens);
       add_history(history, copy_str(str, i));
