@@ -75,7 +75,6 @@ char *copy_str(char *inStr, short len){
     outputStr[i] = inStr[i];
     i++;
   }
-  outputStr[len + 1] = '\0'; // sets last byte to null terminator
   return outputStr;
 }
 
@@ -112,6 +111,7 @@ void free_tokens(char **tokens){
     free(tokens[i]);
     i++;
   }
+  free(tokens[i]);
   free(tokens);
 }
 
