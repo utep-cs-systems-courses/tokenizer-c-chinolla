@@ -4,7 +4,7 @@
 
 #include "tokenizer.h"
 #include <stdio.h>
-#include <stdlin.h>
+#include <stdlib.h>
 
 
 // checks 'c' to see if its a space character, if so, returns 1
@@ -44,12 +44,12 @@ char *word_start(char *s){
 // a space character is found (non_space_char returns true)
 // returns the address of the first space character in the string (the end of the word)
 char *word_terminator(char *word){
-  start_of_word = word_start(word);
+  word = word_start(word);
   int i = 0;
-  while(non_space_char(start_of_word[i])){
+  while(non_space_char(word[i])){
     i++;
   }
-  return &start_of_word[i];
+  return &word[i];
 }
 
 
@@ -81,7 +81,7 @@ char *copy_str(char *inStr, short len){
 
 char **tokenizer(char *str){
   int numWords = count_words(str);// the number of words going to be tokenized from string
-  char **tokens == malloc( (numWords + 1) * sizeof(char *)); // allocates memory to tokens
+  char **tokens = malloc( (numWords + 1) * sizeof(char *)); // allocates memory to tokens
   char *wordstart = word_start(str);
   char *wordend = word_terminator(str);
 
