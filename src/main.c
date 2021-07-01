@@ -14,16 +14,15 @@ int main(){
   char str[MAX_LENGTH];
   char c;
   int i, index = 0;
-  int IDNum;
 
   printf("\t WELCOME");
   printf("\n-------------------------------------------\n");
-  printf("COMMANDS:\t \"q\" TO EXIT\n");
-  printf("\t \"history\" TO VIEW HISTORY\n");
-  printf("\t \"!\" TO PRINT INDIVIDUAL HISTORY\n");
-  printf("ENTER A STRING TO BE TOKENIZED");
+  printf("COMMANDS: \"\tq\" TO EXIT\n");
+  printf("\"history\" TO VIEW HISTORY\n");
+  printf("\"!n\" TO PRINT INDIVIDUAL HISTORY\n");
+  printf("ENTER A STRING TO BE TOKENIZED\n");
   while(strcmp(str,"q") != 0){
-    printf("\n$ ");
+    printf("\n> ");
     i = 0;
     while((c = getchar()) != '\n'){
 	str[i] = c;
@@ -35,12 +34,12 @@ int main(){
     if(strcmp(str, "q") == 0){ // if user uses 'q' to exit
       goto done;
     }
-    else if(strcmp("history", str) == 0){
+    else if(strcmp("history",str) == 0){
       print_history(history);
     }
     else if(str[0] == '!'){
-      IDNum = str_to_num(str + 1);
-      printf("%s", get_history(history, IDNum));
+      index = str_to_num(str + 1);
+      printf("%s", get_history(history, index));
     }
     else{
       tokens = tokenizer(str);
@@ -58,12 +57,11 @@ int main(){
 int strcmp(char *str1, char *str2){
   int i;
   for(i = 0; str1[i] == str2[i]; i++){
-    if (str1[i] == '\0'){
-      return 0;
-    }
-    return str1[i] - str2[i];
+    if (str1[i] == '\0') return 0;
   }
+  return str1[i] - str2[i];
 }
+
 
      
 int str_to_num(char *str){
